@@ -1,0 +1,8 @@
+{
+  "name": "love-letter",
+  "description": "Write romantic love letters from Benno to Sabine",
+  "version": "1.0.0",
+  "author": {
+    "name": "Benno"
+  }
+}

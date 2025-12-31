@@ -1,0 +1,8 @@
+{
+  "name": "crm-customer-analysis",
+  "description": "CRM Customer Analysis Command for VundS",
+  "version": "1.0.0",
+  "author": {
+    "name": "Benno"
+  }
+}

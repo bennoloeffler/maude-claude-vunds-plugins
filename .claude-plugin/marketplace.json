@@ -1,0 +1,55 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "maude-claude-vunds-plugins",
+  "description": "VundS team plugins for Claude Code - CRM tools, workflows, and productivity",
+  "owner": {
+    "name": "VundS",
+    "email": "benno@vunds.de"
+  },
+  "plugins": [
+    {
+      "name": "crm-customer-analysis",
+      "description": "CRM customer analysis workflow for VundS",
+      "source": "./plugins/crm-customer-analysis",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["crm", "customer", "analysis", "vunds"]
+    },
+    {
+      "name": "epct-workflow",
+      "description": "Structured EPCT development approach",
+      "source": "./plugins/epct-workflow",
+      "category": "development",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["epct", "workflow", "development"]
+    },
+    {
+      "name": "vunds-tools",
+      "description": "General VundS productivity tools and skills",
+      "source": "./plugins/vunds-tools",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "VundS Team"
+      },
+      "keywords": ["vunds", "tools", "productivity"]
+    },
+    {
+      "name": "love-letter",
+      "description": "Write romantic love letters from Benno to Sabine",
+      "source": "./plugins/love-letter",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["love", "letter", "romantic", "sabine"]
+    }
+  ]
+}
