@@ -1,66 +1,170 @@
+<div align="center">
+
 # VundS Claude Plugins
 
-A plugin marketplace for Claude Code containing VundS team tools and workflows.
+**A curated plugin marketplace for Claude Code**
 
-## Installation
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blueviolet)](https://claude.ai)
+[![Plugins](https://img.shields.io/badge/Plugins-4-green)]()
+
+*Tools, workflows, and a little romance for the VundS team*
+
+</div>
+
+---
+
+## Quick Start
 
 ```bash
-# Add this marketplace
+# 1. Add the marketplace
 /plugin marketplace add bennoloeffler/maude-claude-vunds-plugins
 
-# Install plugins
+# 2. Install a plugin
 /plugin install love-letter@maude-claude-vunds-plugins
+
+# 3. Use it!
+/love-letter
 ```
+
+---
 
 ## Available Plugins
 
-| Plugin | Description | Category | Status |
-|--------|-------------|----------|--------|
-| **love-letter** | Write romantic love letters from Benno to Sabine | Productivity | Ready |
-| crm-customer-analysis | CRM customer analysis workflow | Productivity | Placeholder |
-| epct-workflow | Structured EPCT development approach | Development | Placeholder |
-| vunds-tools | General VundS productivity tools | Productivity | Placeholder |
+| | Plugin | Description | Status |
+|---|--------|-------------|--------|
+| :love_letter: | **love-letter** | Romantic letters from Benno to Sabine | Ready |
+| :bar_chart: | **crm-customer-analysis** | Customer insights & analysis | Coming Soon |
+| :arrows_counterclockwise: | **epct-workflow** | Structured dev approach | Coming Soon |
+| :hammer_and_wrench: | **vunds-tools** | Team productivity toolkit | Coming Soon |
+
+---
 
 ## Plugin Details
 
-### love-letter
+### :love_letter: love-letter
 
-Write romantic love letters from Benno to Sabine.
+> *"Schreibe einen romantischen Brief von Benno an Sabine"*
 
-**Commands:**
-- `/love-letter` - Generate a romantic love letter
+Generates heartfelt, romantic love letters with German flair.
 
-**Skills:**
-- `love-letter` - Instruction set for letter writing
+**Command:**
+```bash
+/love-letter
+```
 
-### crm-customer-analysis
+**Skill:** `love-letter` - Instruction set for letter writing style
 
-CRM Customer Analysis Command for VundS - analyze customer data and provide insights.
+---
 
-**Commands:**
-- `/crm-analyse-customer` - Run customer analysis
+### :bar_chart: crm-customer-analysis
 
-### epct-workflow
+Analyze VundS customer data with AI-powered insights.
 
-Structured development approach using the EPCT methodology.
+**Command:**
+```bash
+/crm-analyse-customer <customer-name>
+```
 
-**Commands:**
-- `/epct <task>` - Follow structured development approach for a task
+*Coming soon...*
 
-### vunds-tools
+---
+
+### :arrows_counterclockwise: epct-workflow
+
+Structured EPCT development methodology for complex tasks.
+
+**Command:**
+```bash
+/epct "implement user authentication"
+```
+
+*Coming soon...*
+
+---
+
+### :hammer_and_wrench: vunds-tools
 
 General productivity tools and skills for the VundS team.
 
+*Coming soon...*
+
+---
+
 ## Creating New Plugins
 
-1. Create folder: `plugins/<name>/.claude-plugin/`
-2. Add `plugin.json` manifest
-3. Add commands in `commands/` or skills in `skills/`
-4. Update `.claude-plugin/marketplace.json`
-5. Commit and push
+### Recommended: Use plugin-dev
 
-See the existing plugins for examples.
+The official Anthropic plugin development toolkit - a comprehensive suite for creating Claude Code plugins.
 
-## License
+**Installation:**
+```bash
+/plugin marketplace add anthropics/claude-plugins-official
+/plugin install plugin-dev@anthropics/claude-plugins-official
+# Restart Claude Code to load
+```
 
-MIT
+**What's included:**
+
+| Type | Name | Purpose |
+|------|------|---------|
+| Command | `/plugin-dev:start` | Interactive wizard to choose creation path |
+| Command | `/plugin-dev:create-plugin` | 8-phase guided plugin workflow |
+| Command | `/plugin-dev:create-marketplace` | Create a new marketplace |
+| Skill | `hook-development` | Create hooks for lifecycle events |
+| Skill | `mcp-integration` | MCP server integration |
+| Skill | `command-development` | Build slash commands |
+| Skill | `skill-development` | Create skills with SKILL.md |
+| Skill | `agent-development` | Build custom agents |
+| Skill | `plugin-settings` | Configure plugin settings |
+| Agent | `plugin-validator` | Validate plugin structure |
+| Agent | `skill-reviewer` | Review skill quality |
+
+**Usage:**
+```bash
+/plugin-dev:start              # Start here - choose your path
+/plugin-dev:create-plugin      # Jump straight to plugin creation
+```
+
+### Manual Creation
+
+1. Create folder structure:
+   ```
+   plugins/<name>/
+   ├── .claude-plugin/
+   │   └── plugin.json
+   ├── commands/
+   │   └── your-command.md
+   └── skills/
+       └── your-skill/
+           └── SKILL.md
+   ```
+
+2. Add `plugin.json` manifest:
+   ```json
+   {
+     "name": "your-plugin",
+     "description": "What it does",
+     "version": "1.0.0",
+     "author": { "name": "Your Name" }
+   }
+   ```
+
+3. Register in `.claude-plugin/marketplace.json`
+
+4. Commit and push
+
+---
+
+## Resources
+
+- [Claude Code Plugins Documentation](https://docs.anthropic.com/en/docs/claude-code/plugins)
+- [Official Plugin Repository](https://github.com/anthropics/claude-plugins-official)
+
+---
+
+<div align="center">
+
+Made with :heart: by VundS · [benno@vunds.de](mailto:benno@vunds.de)
+
+</div>
