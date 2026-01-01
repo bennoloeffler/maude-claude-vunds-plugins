@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blueviolet)](https://claude.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-4-green)]()
+[![Plugins](https://img.shields.io/badge/Plugins-5-green)]()
 
 *Tools, workflows, and a little romance for the VundS team*
 
@@ -33,6 +33,7 @@
 
 | | Plugin | Description | Status |
 |---|--------|-------------|--------|
+| :briefcase: | **linkedin-assistant** | LinkedIn automation auf Deutsch | Ready |
 | :love_letter: | **love-letter** | Romantic letters from Benno to Sabine | Ready |
 | :bar_chart: | **crm-customer-analysis** | Customer insights & analysis | Coming Soon |
 | :arrows_counterclockwise: | **epct-workflow** | Structured dev approach | Coming Soon |
@@ -41,6 +42,29 @@
 ---
 
 ## Plugin Details
+
+### :briefcase: linkedin-assistant
+
+> *LinkedIn-Assistent für Benno: Nachrichten, Mitteilungen und Networking auf Deutsch*
+
+Full-featured LinkedIn automation with browser control via Claude-in-Chrome.
+
+**Commands:**
+| Command | Description |
+|---------|-------------|
+| `/linkedin:inbox` | Posteingang mit Antwortvorschlägen |
+| `/linkedin:notifications` | Mitteilungen mit Reaktionen |
+| `/linkedin:research [Name]` | Person/Firma recherchieren |
+| `/linkedin:post [Thema]` | Post-Entwurf erstellen |
+| `/linkedin:login` | Login-Hilfe |
+
+**Agents:** `message-responder`, `notification-handler`, `profile-researcher`
+
+**Skills:** `benno-style`, `linkedin-navigation`, `german-professional`
+
+**Requires:** Claude-in-Chrome Extension
+
+---
 
 ### :love_letter: love-letter
 

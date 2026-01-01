@@ -1,0 +1,20 @@
+{
+  "name": "linkedin-assistant",
+  "version": "1.0.0",
+  "description": "LinkedIn-Assistent für Benno: Nachrichten, Mitteilungen und Networking auf Deutsch mit Browser-Automation",
+  "author": {
+    "name": "Benno",
+    "url": "https://github.com/maude-cloud"
+  },
+  "keywords": [
+    "linkedin",
+    "networking",
+    "german",
+    "browser-automation",
+    "messaging"
+  ],
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}

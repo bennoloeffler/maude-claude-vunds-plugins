@@ -50,6 +50,17 @@
         "name": "Benno"
       },
       "keywords": ["love", "letter", "romantic", "sabine"]
+    },
+    {
+      "name": "linkedin-assistant",
+      "description": "LinkedIn-Assistent für Benno: Nachrichten, Mitteilungen und Networking auf Deutsch mit Browser-Automation",
+      "source": "./plugins/linkedin-assistant",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["linkedin", "networking", "german", "browser-automation", "messaging"]
     }
   ]
 }
