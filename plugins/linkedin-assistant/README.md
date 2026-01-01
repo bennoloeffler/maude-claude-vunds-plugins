@@ -20,8 +20,74 @@ claude --plugin-dir ./plugins/linkedin-assistant
 ## Voraussetzungen
 
 - Claude Code CLI
-- Claude-in-Chrome Extension (für Browser-Automation)
+- **Browser-Automation** (eine der folgenden Optionen)
 - macOS (für Sound-Benachrichtigungen)
+
+---
+
+## Browser-Automation einrichten
+
+Dieses Plugin benötigt Browser-Automatisierung. Es gibt zwei Optionen:
+
+### Option 1: Claude in Chrome (Empfohlen)
+
+Claude in Chrome ist eine Chrome-Erweiterung, die Claude Code ermöglicht, deinen Browser direkt zu steuern.
+
+**Features:**
+- Websites navigieren, Formulare ausfüllen, Screenshots machen
+- GIFs von Browser-Interaktionen aufnehmen
+- Debugging mit Console-Logs und Network-Requests
+- Echtzeit-Browsersteuerung aus Claude Code
+
+**Installation:**
+
+1. Chrome-Erweiterung aus dem [Chrome Web Store](https://chromewebstore.google.com/detail/claude-in-chrome/...) installieren
+2. Chrome öffnen und Erweiterung aktivieren
+3. In Claude Code `/chrome` eingeben um Browser-Kontrolle zu starten
+
+**Verwendung:**
+```bash
+# Chrome-Session starten
+/chrome
+
+# Claude kann jetzt Chrome steuern:
+# - Zu URLs navigieren
+# - Klicken, tippen, scrollen
+# - Screenshots machen
+# - Seiteninhalte lesen
+```
+
+### Option 2: Playwright MCP Server (Alternative)
+
+Falls du Chrome nicht installieren kannst oder headless-Automation bevorzugst:
+
+**Installation:**
+```bash
+# Via Claude Code MCP Einstellungen
+claude mcp add playwright
+
+# Oder manuell in ~/.claude.json:
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-playwright"]
+    }
+  }
+}
+```
+
+**Vergleich:**
+
+| Feature | Claude in Chrome | Playwright MCP |
+|---------|-----------------|----------------|
+| Visuelles Feedback | Ja (Browser sichtbar) | Nein (headless) |
+| Setup | Extension installieren | NPM Paket |
+| CI/CD geeignet | Nein | Ja |
+| Session-Persistenz | Ja | Nein |
+
+---
 
 ## Slash Commands
 

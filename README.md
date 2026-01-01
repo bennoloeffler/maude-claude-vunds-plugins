@@ -195,10 +195,85 @@ claude --plugin-dir ./plugins/linkedin-assistant --plugin-dir ./plugins/love-let
 claude --plugin-dir ./plugins/linkedin-assistant --debug
 ```
 
+---
+
+## Browser Automation Requirements
+
+Some plugins (like `linkedin-assistant`) require browser automation. There are two options:
+
+### Option 1: Claude in Chrome (Recommended)
+
+Claude in Chrome is a Chrome extension that lets Claude Code control your browser directly.
+
+**Features:**
+- Navigate websites, fill forms, capture screenshots
+- Record GIFs of browser interactions
+- Debug with console logs and network requests
+- Real-time browser control from Claude Code
+
+**Installation:**
+
+1. Install the Chrome extension from [Chrome Web Store](https://chromewebstore.google.com/detail/claude-in-chrome/...)
+2. Open Chrome and enable the extension
+3. In Claude Code, use `/chrome` to start browser control
+
+**Usage:**
+```bash
+# Start Chrome session
+/chrome
+
+# Claude can now control Chrome:
+# - Navigate to URLs
+# - Click, type, scroll
+# - Take screenshots
+# - Read page content
+```
+
+### Option 2: Playwright MCP Server (Alternative)
+
+If you can't install Chrome or prefer headless automation, use the Playwright MCP server.
+
+**Installation:**
+```bash
+# Install via Claude Code MCP settings
+claude mcp add playwright
+
+# Or manually add to ~/.claude.json:
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-playwright"]
+    }
+  }
+}
+```
+
+**Features:**
+- Headless browser automation
+- Works without Chrome extension
+- Supports Chrome, Firefox, WebKit
+- Good for CI/CD environments
+
+**Comparison:**
+
+| Feature | Claude in Chrome | Playwright MCP |
+|---------|-----------------|----------------|
+| Visual feedback | Yes (see browser) | No (headless) |
+| Setup | Extension install | NPM package |
+| CI/CD friendly | No | Yes |
+| Session persistence | Yes | No |
+| Works with Maude | Yes | Yes |
+
+---
+
 ## Resources
 
 - [Claude Code Plugins Documentation](https://docs.anthropic.com/en/docs/claude-code/plugins)
 - [Official Plugin Repository](https://github.com/anthropics/claude-plugins-official)
+- [Claude in Chrome Extension](https://chromewebstore.google.com)
+- [Playwright MCP Server](https://github.com/anthropics/mcp-server-playwright)
 
 ---
 
