@@ -4,7 +4,7 @@
   "description": "LinkedIn-Assistent für Benno: Nachrichten, Mitteilungen und Networking auf Deutsch mit Browser-Automation",
   "author": {
     "name": "Benno",
-    "url": "https://github.com/maude-cloud"
+    "email": "benno@vunds.de"
   },
   "keywords": [
     "linkedin",
@@ -12,9 +12,5 @@
     "german",
     "browser-automation",
     "messaging"
-  ],
-  "commands": "./commands/",
-  "agents": "./agents/",
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json"
+  ]
 }

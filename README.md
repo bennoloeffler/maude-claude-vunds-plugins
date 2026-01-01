@@ -180,6 +180,21 @@ The official Anthropic plugin development toolkit - a comprehensive suite for cr
 
 ---
 
+## Testing Plugins Locally when Developing Plugins
+
+**DO NOT** install via marketplace for testing. Use `--plugin-dir` instead:
+
+```bash
+# Single plugin
+claude --plugin-dir ./plugins/linkedin-assistant
+
+# Multiple plugins
+claude --plugin-dir ./plugins/linkedin-assistant --plugin-dir ./plugins/love-letter
+
+# With debug output (shows loading and errors)
+claude --plugin-dir ./plugins/linkedin-assistant --debug
+```
+
 ## Resources
 
 - [Claude Code Plugins Documentation](https://docs.anthropic.com/en/docs/claude-code/plugins)
