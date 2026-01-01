@@ -1,5 +1,6 @@
 ---
 description: Zeigt LinkedIn Posteingang mit nummerierten Antwortvorschlägen (user)
+argument-hint: <ungelesen|heute|name>
 ---
 
 # LinkedIn Posteingang

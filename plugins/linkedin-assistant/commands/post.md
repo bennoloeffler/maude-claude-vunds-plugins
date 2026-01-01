@@ -1,5 +1,6 @@
 ---
 description: Erstellt einen LinkedIn Post-Entwurf zu einem Thema (user)
+argument-hint: <thema>
 ---
 
 # LinkedIn Post erstellen

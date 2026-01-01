@@ -25,13 +25,14 @@ claude --plugin-dir ./plugins/linkedin-assistant
 
 ## Slash Commands
 
-| Command | Beschreibung |
-|---------|--------------|
-| `/linkedin:inbox` | Zeigt Posteingang mit Antwortvorschlägen |
-| `/linkedin:notifications` | Zeigt Mitteilungen mit Reaktionsvorschlägen |
-| `/linkedin:research [Name]` | Recherchiert Person oder Firma |
-| `/linkedin:post [Thema]` | Erstellt Post-Entwurf |
-| `/linkedin:login` | Hilft beim Login-Prozess |
+| Command | Beschreibung | Argument-Hint |
+|---------|--------------|---------------|
+| `/linkedin:inbox` | Zeigt Posteingang mit Antwortvorschlägen | `<ungelesen\|heute\|name>` |
+| `/linkedin:notifications` | Zeigt Mitteilungen mit Reaktionsvorschlägen | `<kommentare\|erwähnungen\|anfragen>` |
+| `/linkedin:research` | Recherchiert Person oder Firma | `<name\|firma\|url>` |
+| `/linkedin:post` | Erstellt Post-Entwurf | `<thema>` |
+| `/linkedin:login` | Hilft beim Login-Prozess | - |
+| `/linkedin:status` | Zeigt Plugin-Status und Konfiguration | - |
 
 ## Verwendung
 
@@ -117,11 +118,22 @@ message-responder + profile-researcher → Nachrichten MIT Kontext
 
 ## Skills (automatisch aktiviert)
 
-| Skill | Trigger |
-|-------|---------|
-| `benno-style` | "professionell antworten", "Benno-Stil" |
-| `linkedin-navigation` | "LinkedIn öffnen", "zum Posteingang" |
-| `german-professional` | "auf Deutsch formulieren", "Business-Deutsch" |
+| Skill | Trigger | Struktur |
+|-------|---------|----------|
+| `benno-style` | "professionell antworten", "Benno-Stil" | V&S-Kontext, Kommunikationsstil |
+| `linkedin-navigation` | "LinkedIn öffnen", "zum Posteingang" | Browser-Navigation |
+| `german-professional` | "auf Deutsch formulieren", "Business-Deutsch" | Mit `references/` für Details |
+
+### Progressive Disclosure (german-professional)
+
+```
+skills/german-professional/
+├── SKILL.md                    # Kernprinzipien (~50 Zeilen)
+└── references/
+    ├── anrede-formeln.md       # Vollständige Anrede-/Grußformeln
+    ├── haeufige-fehler.md      # Typische Fehler vermeiden
+    └── linkedin-templates.md   # LinkedIn-spezifische Vorlagen
+```
 
 ## Templates
 
@@ -138,11 +150,24 @@ Das Plugin nutzt Vorlagen für konsistente Kommunikation:
 
 Automatische Aktionen:
 
-- **Sound bei Fertigstellung** - Glas-Ton wenn Claude fertig ist
-- **Agent-Sound** - Pop-Ton wenn ein Agent fertig ist
-- **Action-Logging** - Protokolliert Browser-Aktionen
+| Hook | Beschreibung |
+|------|--------------|
+| **SessionStart** | Zeigt Begrüßung und verfügbare Commands |
+| **PreToolUse (click)** | Sicherheitscheck - blockiert Send/Post ohne Bestätigung |
+| **PostToolUse** | Protokolliert alle Browser-Aktionen |
+| **Stop** | Glas-Ton wenn Claude fertig ist |
+| **SubagentStop** | Pop-Ton wenn ein Agent fertig ist |
 
-Logs finden sich in: `~/.claude/linkedin-assistant/actions.log`
+### Sicherheits-Hook
+
+Der `click-guard.sh` blockiert Klicks auf gefährliche Buttons:
+- "Send" / "Senden"
+- "Post" / "Veröffentlichen"
+- "Delete" / "Löschen"
+
+Erfordert explizite Bestätigung: "ja, senden"
+
+Logs finden sich in: `~/.claude/linkedin-assistant/`
 
 ## Sicherheit
 
@@ -205,17 +230,25 @@ linkedin-assistant/
 │   ├── notifications.md
 │   ├── research.md
 │   ├── post.md
-│   └── login.md
+│   ├── login.md
+│   └── status.md              # NEU: Diagnose-Command
 ├── agents/
-│   ├── message-responder.md
+│   ├── message-responder.md   # 3 Beispiele
 │   ├── notification-handler.md
 │   └── profile-researcher.md
 ├── skills/
 │   ├── benno-style/
+│   │   └── SKILL.md           # Mit V&S-Kontext
 │   ├── linkedin-navigation/
+│   │   └── SKILL.md
 │   └── german-professional/
+│       ├── SKILL.md           # Schlank, nur Kernprinzipien
+│       └── references/        # NEU: Progressive Disclosure
+│           ├── anrede-formeln.md
+│           ├── haeufige-fehler.md
+│           └── linkedin-templates.md
 ├── hooks/
-│   └── hooks.json
+│   └── hooks.json             # Mit SessionStart + PreToolUse
 ├── templates/
 │   ├── reaktionen.md
 │   ├── no-gos.md
@@ -224,7 +257,9 @@ linkedin-assistant/
 ├── scripts/
 │   ├── notification-sound.sh
 │   ├── agent-complete-sound.sh
-│   └── action-logger.sh
+│   ├── action-logger.sh
+│   ├── click-guard.sh        # NEU: Sicherheits-Check
+│   └── session-start.sh      # NEU: Begrüßung
 ├── CLAUDE.md
 └── README.md
 ```

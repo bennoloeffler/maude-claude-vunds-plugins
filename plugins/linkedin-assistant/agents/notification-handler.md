@@ -20,6 +20,15 @@ Agent analysiert den Kontext der Erwähnung und empfiehlt Reaktion.
 </commentary>
 </example>
 
+<example>
+Context: User has many pending connection requests
+user: "Ich habe 20 offene Vernetzungsanfragen, sortier die mal nach Relevanz"
+assistant: "Der notification-handler Agent prüft alle Anfragen, filtert Spam und priorisiert nach Relevanz für dein Netzwerk."
+<commentary>
+Agent bewertet Verbindungsanfragen und gibt klare Empfehlungen: annehmen, ablehnen, mit Nachricht.
+</commentary>
+</example>
+
 model: inherit
 color: blue
 tools: ["mcp__claude-in-chrome__read_page", "mcp__claude-in-chrome__navigate", "mcp__claude-in-chrome__find", "mcp__claude-in-chrome__click", "mcp__claude-in-chrome__tabs_context_mcp", "Read"]

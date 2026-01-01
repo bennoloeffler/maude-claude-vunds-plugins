@@ -1,5 +1,6 @@
 ---
 description: Zeigt LinkedIn Mitteilungen (Likes, Kommentare, Erwähnungen) mit Reaktionsvorschlägen (user)
+argument-hint: <kommentare|erwähnungen|anfragen>
 ---
 
 # LinkedIn Mitteilungen

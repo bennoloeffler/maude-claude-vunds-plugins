@@ -20,6 +20,15 @@ Agent liefert Infos für personalisierte Kommunikation.
 </commentary>
 </example>
 
+<example>
+Context: User wants to evaluate potential business relevance of a contact
+user: "Ist diese Firma für VundS interessant? Schau dir die mal an."
+assistant: "Der profile-researcher Agent analysiert die Firma: Branche, Größe, Entscheider und potenzielle Anknüpfungspunkte für Beratungsprojekte."
+<commentary>
+Agent bewertet Business-Relevanz und identifiziert Gemeinsamkeiten mit VundS-Themen (Lean, Agilität, TOC).
+</commentary>
+</example>
+
 model: inherit
 color: purple
 tools: ["mcp__claude-in-chrome__read_page", "mcp__claude-in-chrome__navigate", "mcp__claude-in-chrome__find", "mcp__claude-in-chrome__tabs_context_mcp", "WebSearch"]

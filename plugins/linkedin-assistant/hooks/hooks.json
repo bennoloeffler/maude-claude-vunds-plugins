@@ -1,5 +1,26 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "mcp__claude-in-chrome__click",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/click-guard.sh"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "mcp__claude-in-chrome__",

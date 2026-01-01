@@ -1,5 +1,6 @@
 ---
 description: Recherchiert eine Person oder Firma auf LinkedIn (user)
+argument-hint: <name|firma|linkedin-url>
 ---
 
 # LinkedIn Recherche

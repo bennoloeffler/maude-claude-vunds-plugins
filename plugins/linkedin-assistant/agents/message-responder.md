@@ -20,6 +20,15 @@ Agent analysiert Kontext und erstellt personalisierte Antwortoptionen.
 </commentary>
 </example>
 
+<example>
+Context: User wants to process multiple unread messages efficiently
+user: "Ich habe 5 ungelesene Nachrichten, hilf mir dabei die schnell abzuarbeiten"
+assistant: "Der message-responder Agent erstellt für jede Nachricht nummerierte Antwortvorschläge, damit du schnell entscheiden kannst."
+<commentary>
+Agent ermöglicht Batch-Verarbeitung mit klaren Optionen pro Nachricht.
+</commentary>
+</example>
+
 model: inherit
 color: green
 tools: ["mcp__claude-in-chrome__read_page", "mcp__claude-in-chrome__navigate", "mcp__claude-in-chrome__find", "mcp__claude-in-chrome__tabs_context_mcp", "Read"]
