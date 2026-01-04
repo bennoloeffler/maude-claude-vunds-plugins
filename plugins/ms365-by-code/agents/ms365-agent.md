@@ -38,42 +38,45 @@ You have access to: `["Bash", "Read"]` - NOT `mcp__ms365__*`
 
 All operations go through wrapper scripts in `~/.claude/plugins/ms365-by-code/scripts/`
 
-## Step 1: Check Authentication
+## Step 1: Start Session (keeps server running for fast calls)
 
 ```bash
 cd ~/.claude/plugins/ms365-by-code
+./scripts/ms365-session.sh start
+```
+
+The server stays running until `stop` is called or Claude session ends (hook cleans up).
+
+## Step 2: Check Authentication
+
+```bash
 ./scripts/ms365-call.sh verify-login
 ```
 
-If not logged in, tell user:
+If not logged in:
 ```bash
 ./scripts/ms365-call.sh login
-# Then follow device code flow
-```
-
-## Step 2: Discover Tools (if needed)
-
-```bash
-./scripts/discover-tools.sh                   # Overview
-./scripts/discover-tools.sh --category email  # Email tools only
-./scripts/discover-tools.sh --tool send-mail  # Specific tool params
+# Follow device code flow in browser
 ```
 
 ## Step 3: Call MS365 Operations
 
+Use either **ms365-session.sh call** (faster, reuses server) or **ms365-call.sh** (simpler, starts fresh):
+
 **List emails:**
 ```bash
-./scripts/ms365-call.sh list-mail-messages --top 5
+./scripts/ms365-session.sh call list-mail-messages --top 5
+# or: ./scripts/ms365-call.sh list-mail-messages --top 5
 ```
 
 **Read specific email:**
 ```bash
-./scripts/ms365-call.sh get-mail-message --message-id "ABC123"
+./scripts/ms365-session.sh call get-mail-message --messageId "ABC123"
 ```
 
 **Send email:**
 ```bash
-./scripts/ms365-call.sh send-mail \
+./scripts/ms365-session.sh call send-mail \
   --to "alice@example.com" \
   --subject "Meeting Tomorrow" \
   --body "Hi Alice, let's meet at 2pm."
@@ -81,23 +84,29 @@ If not logged in, tell user:
 
 **List calendar:**
 ```bash
-./scripts/ms365-call.sh list-calendar-events --top 10
+./scripts/ms365-session.sh call list-calendar-events --top 10
 ```
 
 **Get calendar view (date range):**
 ```bash
-./scripts/ms365-call.sh get-calendar-view \
-  --start-date-time "2026-01-04T00:00:00Z" \
-  --end-date-time "2026-01-11T23:59:59Z"
+./scripts/ms365-session.sh call get-calendar-view \
+  --startDateTime "2026-01-04T00:00:00Z" \
+  --endDateTime "2026-01-11T23:59:59Z"
 ```
 
 **Create event:**
 ```bash
-./scripts/ms365-call.sh create-calendar-event \
+./scripts/ms365-session.sh call create-calendar-event \
   --subject "Team Meeting" \
   --start "2026-01-05T14:00:00" \
   --end "2026-01-05T15:00:00" \
   --attendees "bob@example.com"
+```
+
+## Step 4: Stop Session (optional - hook cleans up automatically)
+
+```bash
+./scripts/ms365-session.sh stop
 ```
 
 ## Step 4: Return Clean Results

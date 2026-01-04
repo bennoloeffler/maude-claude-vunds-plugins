@@ -1,17 +1,32 @@
 # MS365-by-Code Plugin
 
-**Microsoft 365 integration via MCP-by-Code pattern using @softeria/ms-365-mcp-server.**
+**Microsoft 365 integration via MCP-by-Code pattern - NO MCP REGISTRATION!**
 
-## What is MCP-by-Code?
+## ⚠️ WHY NOT REGISTER MCP?
 
-Traditional MCP servers load ALL tool definitions into context upfront. With 90+ MS365 tools, that's ~10,000+ tokens consumed before any conversation starts.
+```
+BECAUSE IT FLOODS THE CONTEXT!
 
-**MCP-by-Code** solves this:
-1. Sub-agent with isolated context handles MS365 operations
-2. Tools discovered on-demand via `discover-tools.sh`
-3. Only results return to main context
+Traditional MCP:
+  claude mcp add ms365 -- npx @softeria/ms-365-mcp-server
+  → 87 tool definitions loaded = ~10,000 tokens WASTED
+  → With 5 MCP servers = 50,000+ tokens GONE before you even start!
+```
 
-**Result:** Main agent stays clean. 70%+ token savings.
+## ✅ MCP-by-Code Solution
+
+**DO NOT register the MCP server with Claude Code!**
+
+Instead:
+1. Sub-agent uses `["Bash", "Read"]` tools (NOT `mcp__ms365__*`)
+2. Agent calls `./scripts/ms365-call.sh <tool> --params`
+3. Script starts MCP server, calls tool, returns result, exits
+4. **Main context sees ZERO tool definitions!**
+
+**Result:** 
+- Traditional MCP: **67,300 tokens** wasted (33% of context)
+- MCP-by-Code: **~1,000 tokens** per operation
+- **Savings: ~98%**
 
 ## Prerequisites
 

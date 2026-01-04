@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/hooks.schema.json",
+  "hooks": [
+    {
+      "event": "stop",
+      "command": "./hooks/cleanup-mcp.sh",
+      "description": "Kill MS365 MCP server when Claude session ends"
+    }
+  ]
+}
+
