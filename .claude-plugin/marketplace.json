@@ -94,6 +94,17 @@
         "name": "Benno"
       },
       "keywords": ["context", "restart", "continuation", "prompt", "session", "handoff"]
+    },
+    {
+      "name": "ralph-wiggum-helper",
+      "description": "Format prompts for the ralph-wiggum agentic loop with optional code analysis and DoD enhancement",
+      "source": "./plugins/ralph-wiggum-helper",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["ralph-wiggum", "prompt", "loop", "agentic", "automation"]
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "name": "ralph-wiggum-helper",
+  "description": "Format prompts for the ralph-wiggum agentic loop with optional code analysis and DoD enhancement",
+  "version": "1.0.0",
+  "author": {
+    "name": "Benno",
+    "email": "benno.loeffler@gmx.de"
+  },
+  "keywords": ["ralph-wiggum", "prompt", "loop", "agentic", "automation"]
+}
+
