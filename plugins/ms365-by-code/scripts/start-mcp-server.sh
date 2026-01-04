@@ -1,51 +1,29 @@
 #!/bin/bash
 # start-mcp-server.sh - Start the MS365 MCP server
 #
-# This script starts the @softeria/ms-365-mcp-server MCP server.
-# 
-# REQUIRED: Set these environment variables before running:
-#   MS365_CLIENT_ID     - Azure AD Application (client) ID
-#   MS365_TENANT_ID     - Azure AD Tenant ID
-#   MS365_CLIENT_SECRET - Azure AD Client Secret (optional for public apps)
+# Credential Resolution Order:
+#   1. .env file in plugin directory (if exists)
+#   2. Shell environment variables (if set)
+#   3. Error with clear instructions
 #
 # Usage:
 #   ./start-mcp-server.sh              # Start with default settings
 #   ./start-mcp-server.sh --org-mode   # Include Teams, SharePoint, etc.
 #   ./start-mcp-server.sh --preset mail # Only email tools
-#   ./start-mcp-server.sh --http 3000  # Start HTTP server on port 3000
+#   ./start-mcp-server.sh --login      # Interactive login
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR="$(dirname "$SCRIPT_DIR")"
+ENV_FILE="$PLUGIN_DIR/.env"
 
-# Check for required environment variables
-check_env() {
-  local missing=()
-  
-  if [[ -z "$MS365_CLIENT_ID" ]]; then
-    missing+=("MS365_CLIENT_ID")
-  fi
-  if [[ -z "$MS365_TENANT_ID" ]]; then
-    missing+=("MS365_TENANT_ID")
-  fi
-  
-  if [[ ${#missing[@]} -gt 0 ]]; then
-    echo "❌ Error: Missing required environment variables:"
-    for var in "${missing[@]}"; do
-      echo "   - $var"
-    done
-    echo ""
-    echo "Please set these in your environment or in a .env file:"
-    echo ""
-    echo "   export MS365_CLIENT_ID='your-azure-app-client-id'"
-    echo "   export MS365_TENANT_ID='your-tenant-id'"
-    echo "   export MS365_CLIENT_SECRET='your-client-secret'  # Optional for public apps"
-    echo ""
-    echo "Then run this script again."
-    exit 1
-  fi
-}
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
 
 # Help text
 show_help() {
@@ -67,58 +45,143 @@ Options:
   --verify-login    Verify login status
   -h, --help        Show this help message
 
-Environment Variables:
-  MS365_CLIENT_ID      Required. Azure AD Application (client) ID
-  MS365_TENANT_ID      Required. Azure AD Tenant ID  
-  MS365_CLIENT_SECRET  Optional. Client secret for confidential apps
+Credential Setup:
+  Option 1: Create .env file in plugin directory
+  Option 2: Set shell environment variables
 
 Examples:
-  # Start with all personal tools
-  ./start-mcp-server.sh
-  
-  # Start with only email tools
-  ./start-mcp-server.sh --preset mail
-  
-  # Start with work features (Teams, SharePoint)
-  ./start-mcp-server.sh --org-mode
-  
-  # Start HTTP server on port 8080
-  ./start-mcp-server.sh --http 8080
+  ./start-mcp-server.sh                  # Start with all personal tools
+  ./start-mcp-server.sh --preset mail    # Only email tools
+  ./start-mcp-server.sh --org-mode       # Include Teams/SharePoint
+  ./start-mcp-server.sh --login          # Interactive login first
 
 For more info: https://github.com/softeria/ms-365-mcp-server
 EOF
   exit 0
 }
 
-# Parse arguments for help
+# Show setup instructions when credentials are missing
+show_setup_instructions() {
+  echo ""
+  echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo -e "${RED}  ERROR: Microsoft 365 credentials not configured${NC}"
+  echo -e "${RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo ""
+  echo -e "${YELLOW}Missing required credentials:${NC}"
+  [[ -z "$MS365_CLIENT_ID" ]] && echo "  • MS365_CLIENT_ID"
+  [[ -z "$MS365_TENANT_ID" ]] && echo "  • MS365_TENANT_ID"
+  echo ""
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo -e "${CYAN}  OPTION 1: Create .env file (recommended)${NC}"
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo ""
+  echo "  Create file: $ENV_FILE"
+  echo ""
+  echo -e "${GREEN}  # Contents of .env:${NC}"
+  echo "  MS365_CLIENT_ID=your-azure-app-client-id"
+  echo "  MS365_TENANT_ID=your-azure-tenant-id"
+  echo "  MS365_CLIENT_SECRET=your-client-secret  # Optional"
+  echo ""
+  echo "  Quick command to create from template:"
+  echo -e "  ${GREEN}cp $PLUGIN_DIR/.env.example $ENV_FILE${NC}"
+  echo "  Then edit .env with your credentials."
+  echo ""
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo -e "${CYAN}  OPTION 2: Set shell environment variables${NC}"
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo ""
+  echo "  Add to your ~/.zshrc or ~/.bashrc:"
+  echo ""
+  echo -e "${GREEN}  export MS365_CLIENT_ID='your-azure-app-client-id'${NC}"
+  echo -e "${GREEN}  export MS365_TENANT_ID='your-azure-tenant-id'${NC}"
+  echo -e "${GREEN}  export MS365_CLIENT_SECRET='your-client-secret'${NC}  # Optional"
+  echo ""
+  echo "  Then run: source ~/.zshrc"
+  echo ""
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo -e "${CYAN}  HOW TO GET AZURE CREDENTIALS${NC}"
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo ""
+  echo "  1. Go to: https://portal.azure.com"
+  echo "  2. Navigate to: Azure Active Directory → App registrations"
+  echo "  3. Click: 'New registration'"
+  echo "  4. Set name: 'MS365 MCP Server'"
+  echo "  5. Copy the 'Application (client) ID' → MS365_CLIENT_ID"
+  echo "  6. Copy the 'Directory (tenant) ID' → MS365_TENANT_ID"
+  echo "  7. Go to: Certificates & secrets → New client secret"
+  echo "  8. Copy the secret value → MS365_CLIENT_SECRET"
+  echo ""
+  echo "  Required API Permissions:"
+  echo "  • Mail.Send, Mail.Read"
+  echo "  • Calendars.ReadWrite"
+  echo "  • Files.ReadWrite"
+  echo "  • (Add more as needed)"
+  echo ""
+  echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo ""
+  exit 1
+}
+
+# Parse arguments for help first
 for arg in "$@"; do
   case $arg in
     -h|--help) show_help;;
   esac
 done
 
-# Load .env file if it exists
-if [[ -f "$PLUGIN_DIR/.env" ]]; then
+# Step 1: Try to load .env file from plugin directory
+if [[ -f "$ENV_FILE" ]]; then
+  echo -e "${GREEN}📁 Loading credentials from .env file${NC}"
   set -a
-  source "$PLUGIN_DIR/.env"
+  source "$ENV_FILE"
   set +a
+else
+  echo -e "${YELLOW}ℹ️  No .env file found at $ENV_FILE${NC}"
+  echo "   Checking shell environment variables..."
 fi
 
-# Check environment
-check_env
+# Step 2: Check if required variables are now set (from .env or shell)
+MISSING_VARS=()
 
-# Export variables for the MCP server
+if [[ -z "$MS365_CLIENT_ID" ]]; then
+  MISSING_VARS+=("MS365_CLIENT_ID")
+fi
+
+if [[ -z "$MS365_TENANT_ID" ]]; then
+  MISSING_VARS+=("MS365_TENANT_ID")
+fi
+
+# Step 3: If any required vars missing, show helpful instructions
+if [[ ${#MISSING_VARS[@]} -gt 0 ]]; then
+  show_setup_instructions
+fi
+
+# All good - show what we're using
+echo ""
+echo -e "${GREEN}✓ Credentials loaded successfully${NC}"
+echo "  Client ID: ${MS365_CLIENT_ID:0:8}...${MS365_CLIENT_ID: -4}"
+echo "  Tenant ID: ${MS365_TENANT_ID:0:8}...${MS365_TENANT_ID: -4}"
+if [[ -n "$MS365_CLIENT_SECRET" ]]; then
+  echo "  Secret:    ****${MS365_CLIENT_SECRET: -4}"
+fi
+if [[ -n "$MS365_USER" ]]; then
+  echo "  User:      $MS365_USER"
+fi
+echo ""
+
+# Export variables for the MCP server (with MCP naming convention)
 export MS365_MCP_CLIENT_ID="$MS365_CLIENT_ID"
 export MS365_MCP_TENANT_ID="$MS365_TENANT_ID"
 if [[ -n "$MS365_CLIENT_SECRET" ]]; then
   export MS365_MCP_CLIENT_SECRET="$MS365_CLIENT_SECRET"
 fi
 
-echo "🚀 Starting MS365 MCP Server..."
-echo "   Client ID: ${MS365_CLIENT_ID:0:8}..."
-echo "   Tenant ID: ${MS365_TENANT_ID:0:8}..."
+# Start the server
+echo -e "${GREEN}🚀 Starting MS365 MCP Server...${NC}"
+echo "   Package: @softeria/ms-365-mcp-server"
+if [[ $# -gt 0 ]]; then
+  echo "   Options: $*"
+fi
 echo ""
 
-# Start the MCP server
 exec npx -y @softeria/ms-365-mcp-server "$@"
-

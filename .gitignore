@@ -1,0 +1,15 @@
+# Environment files with secrets - NEVER COMMIT
+.env
+*.env
+**/.env
+
+# But allow .env.example templates
+!.env.example
+!**/.env.example
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
