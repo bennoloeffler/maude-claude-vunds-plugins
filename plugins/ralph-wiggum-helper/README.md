@@ -9,11 +9,13 @@ Quickly format prompts for the ralph-wiggum agentic loop.
 Transforms a simple multiline prompt into a properly formatted ralph-wiggum loop command.
 
 **Features:**
-- Optional prompt improvement by analyzing your codebase
-- Optional "definition of done" enhancement
-- Optional saving to `./docs/00_prompts/` for documentation
+- Prompt improvement by analyzing your codebase
+- "Definition of done" enhancement  
+- Saving to `./docs/00_prompts/` for documentation
 
-**Quick mode (n/n/n):** Just formats your prompt as-is - no analysis, no changes.
+**Shortcuts:**
+- **"go"** or just **Enter** = y/y/y (default - do everything)
+- **"n/n/n"** = skip all, just format as-is
 
 **Example:**
 

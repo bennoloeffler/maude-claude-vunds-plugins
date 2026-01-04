@@ -16,16 +16,20 @@ The user provides a multiline prompt `<p>` describing their task.
 
 ### Step 1: Ask Three Questions
 
-Before processing, ask these three questions ONE AT A TIME and wait for each answer:
+Before processing, ask these three questions. The user can answer individually OR use shortcuts:
+- **"go"** or **Enter** = y/y/y (default - do everything)
+- **"n/n/n"** = skip all improvements, just format as-is
 
 **Question 1:**
-> Should I rework the prompt by analyzing your docs/code first to make it more specific and actionable? (y/n)
+> Should I rework the prompt by analyzing your docs/code first to make it more specific and actionable? (Y/n)
 
 **Question 2:**
-> Should I look for good "definition of done" criteria and improve the acceptance criteria in your prompt? (y/n)
+> Should I look for good "definition of done" criteria and improve the acceptance criteria in your prompt? (Y/n)
 
 **Question 3:**
-> Should I save the original and improved prompt to `./docs/00_prompts/prompt-<feature>-ISO-DATE--HH-MM-SS.md`? (y/n)
+> Should I save the original and improved prompt to `./docs/00_prompts/prompt-<feature>-ISO-DATE--HH-MM-SS.md`? (Y/n)
+
+**Default is YES for all questions.** Empty answer or "go" means yes.
 
 ### Step 2: Process Based on Answers
 
