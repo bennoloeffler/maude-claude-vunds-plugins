@@ -40,7 +40,7 @@ Before processing, ask these three questions. The user can answer individually O
 
 **If any answer is `y`:**
 
-For **Question 1 = y**: 
+For **Question 1 = y**:
 - Scan relevant docs (CLAUDE.md, docs/, README.md) and code structure
 - Understand the project context
 - Rewrite the prompt to be more specific, referencing actual file paths, patterns, and conventions found
@@ -58,26 +58,23 @@ For **Question 3 = y**:
 
 ### Step 3: Generate Output
 
-Format the final prompt (original or improved) as:
+Format the final prompt as a **SINGLE LINE** command:
 
 ```
-/ralph-wiggum:ralph-loop
- "<FINAL_PROMPT>
-
-  When finished, say: <promise>TASK_COMPLETELY_DONE</promise>"
-  --max-iterations 30
-  --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "YOUR_PROMPT_HERE. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
 
-**Important formatting rules:**
+**CRITICAL formatting rules:**
+- The ENTIRE command must be on ONE LINE (no line breaks)
 - The prompt text goes inside double quotes
-- Add the completion promise instruction at the end of the prompt
-- Keep the exact spacing and flag format shown above
+- Add the completion promise instruction at the end of the prompt, inside the quotes
+- All flags come after the closing quote on the same line
+- If the prompt contains quotes, escape them with backslash: `\"`
 
 ## Output
 
 1. If improvements were made, briefly summarize what changed
-2. Display the ready-to-copy ralph-wiggum command in a code block
+2. Display the ready-to-copy ralph-wiggum command in a code block (single line)
 3. Tell user: "Copy the above command and paste it to start the ralph-wiggum loop"
 
 ## Example
@@ -89,33 +86,10 @@ Add dark mode to the settings view
 
 **If n/n/n - Output:**
 ```
-/ralph-wiggum:ralph-loop
- "Add dark mode to the settings view
-
-  When finished, say: <promise>TASK_COMPLETELY_DONE</promise>"
-  --max-iterations 30
-  --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "Add dark mode to the settings view. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
 
 **If y/y/n - Output (after analysis):**
 ```
-/ralph-wiggum:ralph-loop
- "Add dark mode support to SettingsView.swift:
-
-  Requirements:
-  - Add a toggle in the Settings section for dark/light mode
-  - Store preference in SettingsStore (persist to ~/.maude/settings.json)
-  - Apply theme change immediately without app restart
-  - Follow existing UI patterns in the codebase
-
-  Definition of Done:
-  - [ ] Toggle appears in settings UI
-  - [ ] Preference persists across app restarts
-  - [ ] Theme changes apply immediately
-  - [ ] Build succeeds with no warnings
-  - [ ] Existing functionality unaffected
-
-  When finished, say: <promise>TASK_COMPLETELY_DONE</promise>"
-  --max-iterations 30
-  --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift. Requirements: Add a toggle in Settings for dark/light mode, store preference in SettingsStore (persist to ~/.maude/settings.json), apply theme change immediately without app restart, follow existing UI patterns. Definition of Done: Toggle appears in settings UI, preference persists across restarts, theme changes apply immediately, build succeeds with no warnings. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
