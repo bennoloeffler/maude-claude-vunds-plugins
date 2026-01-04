@@ -1,0 +1,4 @@
+{
+  "$schema": "https://anthropic.com/claude-code/hooks.schema.json",
+  "hooks": []
+}

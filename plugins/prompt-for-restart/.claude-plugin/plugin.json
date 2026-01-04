@@ -1,0 +1,10 @@
+{
+  "name": "prompt-for-restart",
+  "description": "Prepare a restart prompt when context runs low - captures all insights, references, and task state for seamless continuation",
+  "version": "1.0.0",
+  "author": {
+    "name": "Benno",
+    "email": "benno@vunds.de"
+  },
+  "keywords": ["context", "restart", "continuation", "prompt", "session"]
+}

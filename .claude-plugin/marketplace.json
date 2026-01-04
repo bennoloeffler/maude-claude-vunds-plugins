@@ -83,6 +83,17 @@
         "name": "Benno"
       },
       "keywords": ["screenshot", "visual", "capture", "debug", "image"]
+    },
+    {
+      "name": "prompt-for-restart",
+      "description": "Prepare a restart prompt when context runs low - captures all insights, references, and task state for seamless continuation",
+      "source": "./plugins/prompt-for-restart",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["context", "restart", "continuation", "prompt", "session", "handoff"]
     }
   ]
 }
