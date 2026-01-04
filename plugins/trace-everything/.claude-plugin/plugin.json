@@ -1,0 +1,8 @@
+{
+  "name": "trace-everything",
+  "description": "Hooks-based tracer that logs prompts, tool calls, tool results, and assistant responses.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Benno"
+  }
+}
