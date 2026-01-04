@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blueviolet)](https://claude.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-5-green)]()
+[![Plugins](https://img.shields.io/badge/Plugins-6-green)]()
 
 *Tools, workflows, and a little romance for the VundS team*
 
@@ -35,6 +35,7 @@
 |---|--------|-------------|--------|
 | :briefcase: | **linkedin-assistant** | LinkedIn automation auf Deutsch | Ready |
 | :love_letter: | **love-letter** | Romantic letters from Benno to Sabine | Ready |
+| :robot: | **ralph-wiggum-helper** | Format prompts for ralph-wiggum agentic loop | Ready |
 | :bar_chart: | **crm-customer-analysis** | Customer insights & analysis | Coming Soon |
 | :arrows_counterclockwise: | **epct-workflow** | Structured dev approach | Coming Soon |
 | :hammer_and_wrench: | **vunds-tools** | Team productivity toolkit | Coming Soon |
@@ -78,6 +79,34 @@ Generates heartfelt, romantic love letters with German flair.
 ```
 
 **Skill:** `love-letter` - Instruction set for letter writing style
+
+---
+
+### :robot: ralph-wiggum-helper
+
+> *Format prompts for the ralph-wiggum agentic loop*
+
+Transforms simple prompts into properly formatted ralph-wiggum loop commands with optional enhancements.
+
+**Command:**
+```bash
+/ralph-wiggum-helper:create-prompt
+<your prompt here>
+```
+
+**Shortcuts:**
+- **"go"** or **Enter** = y/y/y (analyze code, improve DoD, save prompt)
+- **"n/n/n"** = just format as-is, no enhancements
+
+**Output:**
+```
+/ralph-wiggum:ralph-loop
+ "<your prompt>
+
+  When finished, say: <promise>TASK_COMPLETELY_DONE</promise>"
+  --max-iterations 30
+  --completion-promise TASK_COMPLETELY_DONE
+```
 
 ---
 
