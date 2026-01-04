@@ -105,6 +105,17 @@
         "name": "Benno"
       },
       "keywords": ["ralph-wiggum", "prompt", "loop", "agentic", "automation"]
+    },
+    {
+      "name": "ms365-by-code",
+      "description": "Microsoft 365 integration via MCP-by-Code pattern - email, calendar, files, Teams, SharePoint with 70%+ token savings",
+      "source": "./plugins/ms365-by-code",
+      "category": "productivity",
+      "version": "1.0.0",
+      "author": {
+        "name": "Benno"
+      },
+      "keywords": ["microsoft365", "ms365", "office365", "email", "calendar", "onedrive", "teams", "sharepoint", "mcp", "graph-api"]
     }
   ]
 }

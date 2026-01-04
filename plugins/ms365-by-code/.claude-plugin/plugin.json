@@ -1,0 +1,25 @@
+{
+  "name": "ms365-by-code",
+  "version": "1.0.0",
+  "description": "Microsoft 365 integration via MCP-by-Code pattern - email, calendar, files, Teams, SharePoint with 70%+ token savings",
+  "author": {
+    "name": "Benno",
+    "email": "benno@vunds.de"
+  },
+  "keywords": [
+    "microsoft365",
+    "ms365",
+    "office365",
+    "email",
+    "calendar",
+    "onedrive",
+    "teams",
+    "sharepoint",
+    "mcp",
+    "mcp-by-code",
+    "graph-api"
+  ],
+  "repository": "https://github.com/bennoloeffler/maude-claude-vunds-plugins",
+  "license": "MIT"
+}
+
