@@ -56,26 +56,71 @@ For **Question 3 = y**:
 - Generate filename: `prompt-<feature-slug>-YYYY-MM-DD--HH-MM-SS.md`
 - Save both the original and improved prompt with metadata
 
-### Step 3: Generate Output
+### Step 3: Generate TWO Outputs
 
-Format the final prompt as a **SINGLE LINE** command:
+You MUST output the prompt in TWO formats:
+
+---
+
+**FORMAT 1: Human-Readable (for review)**
+
+Display the prompt nicely formatted with real line breaks, indentation, and structure.
+This is for the user to READ and UNDERSTAND what the task is.
 
 ```
-/ralph-wiggum:ralph-loop "YOUR_PROMPT_HERE. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+📋 PROMPT (Human-Readable):
+════════════════════════════════════════════════════════════
+
+Add dark mode support to SettingsView.swift
+
+Requirements:
+- Add a toggle in Settings for dark/light mode
+- Store preference in SettingsStore (persist to ~/.maude/settings.json)
+- Apply theme change immediately without app restart
+- Follow existing UI patterns
+
+Definition of Done:
+- [ ] Toggle appears in settings UI
+- [ ] Preference persists across restarts
+- [ ] Theme changes apply immediately
+- [ ] Build succeeds with no warnings
+
+When finished, say: <promise>TASK_COMPLETELY_DONE</promise>
+
+════════════════════════════════════════════════════════════
 ```
 
-**CRITICAL formatting rules:**
-- The ENTIRE command must be on ONE LINE (no line breaks)
+---
+
+**FORMAT 2: Copy-Paste Command (single line with \n)**
+
+Convert ALL newlines to literal `\n` escape sequences.
+This creates ONE LONG LINE that can be copied and pasted.
+
+```
+📋 COPY THIS COMMAND:
+```
+
+```
+/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+```
+
+---
+
+**CRITICAL formatting rules for Format 2:**
+- The ENTIRE command must be on ONE LINE (no actual line breaks)
+- Replace every newline with literal `\n`
+- Replace blank lines with `\n\n`
 - The prompt text goes inside double quotes
-- Add the completion promise instruction at the end of the prompt, inside the quotes
-- All flags come after the closing quote on the same line
 - If the prompt contains quotes, escape them with backslash: `\"`
+- All flags come after the closing quote on the same line
 
 ## Output
 
 1. If improvements were made, briefly summarize what changed
-2. Display the ready-to-copy ralph-wiggum command in a code block (single line)
-3. Tell user: "Copy the above command and paste it to start the ralph-wiggum loop"
+2. Display **Format 1** (human-readable) so user can review
+3. Display **Format 2** (copy-paste command) in a code block
+4. Tell user: "Copy the command above and paste it to start the ralph-wiggum loop"
 
 ## Example
 
@@ -85,11 +130,41 @@ Add dark mode to the settings view
 ```
 
 **If n/n/n - Output:**
+
+📋 PROMPT (Human-Readable):
 ```
-/ralph-wiggum:ralph-loop "Add dark mode to the settings view. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+Add dark mode to the settings view.
+
+When finished, say: <promise>TASK_COMPLETELY_DONE</promise>
+```
+
+📋 COPY THIS COMMAND:
+```
+/ralph-wiggum:ralph-loop "Add dark mode to the settings view.\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
 
 **If y/y/n - Output (after analysis):**
+
+📋 PROMPT (Human-Readable):
 ```
-/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift. Requirements: Add a toggle in Settings for dark/light mode, store preference in SettingsStore (persist to ~/.maude/settings.json), apply theme change immediately without app restart, follow existing UI patterns. Definition of Done: Toggle appears in settings UI, preference persists across restarts, theme changes apply immediately, build succeeds with no warnings. When finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+Add dark mode support to SettingsView.swift
+
+Requirements:
+- Add a toggle in Settings for dark/light mode
+- Store preference in SettingsStore (persist to ~/.maude/settings.json)
+- Apply theme change immediately without app restart
+- Follow existing UI patterns
+
+Definition of Done:
+- [ ] Toggle appears in settings UI
+- [ ] Preference persists across restarts
+- [ ] Theme changes apply immediately
+- [ ] Build succeeds with no warnings
+
+When finished, say: <promise>TASK_COMPLETELY_DONE</promise>
+```
+
+📋 COPY THIS COMMAND:
+```
+/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
