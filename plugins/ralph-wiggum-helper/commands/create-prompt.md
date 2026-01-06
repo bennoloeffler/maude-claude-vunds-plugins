@@ -56,7 +56,18 @@ For **Question 3 = y**:
 - Generate filename: `prompt-<feature-slug>-YYYY-MM-DD--HH-MM-SS.md`
 - Save both the original and improved prompt with metadata
 
-### Step 3: Generate TWO Outputs
+### Step 3: Add Standard Instructions
+
+Every generated prompt MUST include these standard instructions (add them after the user's requirements but before the "Definition of Done"):
+
+```
+Instructions:
+- Use command /feature-dev:feature-dev whenever useful
+- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.
+- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them
+```
+
+### Step 4: Generate TWO Outputs
 
 You MUST output the prompt in TWO formats:
 
@@ -78,6 +89,11 @@ Requirements:
 - Store preference in SettingsStore (persist to ~/.maude/settings.json)
 - Apply theme change immediately without app restart
 - Follow existing UI patterns
+
+Instructions:
+- Use command /feature-dev:feature-dev whenever useful
+- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.
+- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them
 
 Definition of Done:
 - [ ] Toggle appears in settings UI
@@ -102,7 +118,7 @@ This creates ONE LONG LINE that can be copied and pasted.
 ```
 
 ```
-/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nInstructions:\n- Use command /feature-dev:feature-dev whenever useful\n- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.\n- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
 
 ---
@@ -135,12 +151,17 @@ Add dark mode to the settings view
 ```
 Add dark mode to the settings view.
 
+Instructions:
+- Use command /feature-dev:feature-dev whenever useful
+- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.
+- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them
+
 When finished, say: <promise>TASK_COMPLETELY_DONE</promise>
 ```
 
 📋 COPY THIS COMMAND:
 ```
-/ralph-wiggum:ralph-loop "Add dark mode to the settings view.\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "Add dark mode to the settings view.\n\nInstructions:\n- Use command /feature-dev:feature-dev whenever useful\n- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.\n- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
 
 **If y/y/n - Output (after analysis):**
@@ -155,6 +176,11 @@ Requirements:
 - Apply theme change immediately without app restart
 - Follow existing UI patterns
 
+Instructions:
+- Use command /feature-dev:feature-dev whenever useful
+- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.
+- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them
+
 Definition of Done:
 - [ ] Toggle appears in settings UI
 - [ ] Preference persists across restarts
@@ -166,5 +192,5 @@ When finished, say: <promise>TASK_COMPLETELY_DONE</promise>
 
 📋 COPY THIS COMMAND:
 ```
-/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
+/ralph-wiggum:ralph-loop "Add dark mode support to SettingsView.swift\n\nRequirements:\n- Add a toggle in Settings for dark/light mode\n- Store preference in SettingsStore (persist to ~/.maude/settings.json)\n- Apply theme change immediately without app restart\n- Follow existing UI patterns\n\nInstructions:\n- Use command /feature-dev:feature-dev whenever useful\n- Create general sub-agents when reading files, analysing files, creating code, running code, run tests, etc.\n- Whenever you want to see results on monitor and find no other way: use command /screenshot in a general agent and get results back to work on them\n\nDefinition of Done:\n- [ ] Toggle appears in settings UI\n- [ ] Preference persists across restarts\n- [ ] Theme changes apply immediately\n- [ ] Build succeeds with no warnings\n\nWhen finished, say: <promise>TASK_COMPLETELY_DONE</promise>" --max-iterations 30 --completion-promise TASK_COMPLETELY_DONE
 ```
