@@ -1,7 +1,7 @@
 {
   "name": "epct-workflow",
   "description": "Structured EPCT development approach",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Benno"
   }

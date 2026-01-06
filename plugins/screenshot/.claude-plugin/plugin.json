@@ -1,7 +1,7 @@
 {
   "name": "screenshot",
   "description": "Capture screenshots for Claude's visual context - windows, regions, or full screen with auto-compression",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Benno",
     "email": "benno@vunds.de"

@@ -1,6 +1,6 @@
 {
   "name": "ms365-by-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Microsoft 365 integration via MCP-by-Code pattern - email, calendar, files, Teams, SharePoint with 70%+ token savings",
   "author": {
     "name": "Benno",
