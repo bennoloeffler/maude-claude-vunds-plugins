@@ -12,7 +12,7 @@
       "description": "CRM customer analysis workflow for VundS",
       "source": "./plugins/crm-customer-analysis",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -23,7 +23,7 @@
       "description": "Structured EPCT development approach",
       "source": "./plugins/epct-workflow",
       "category": "development",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -34,7 +34,7 @@
       "description": "General VundS productivity tools and skills",
       "source": "./plugins/vunds-tools",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "VundS Team"
       },
@@ -45,7 +45,7 @@
       "description": "Write romantic love letters from Benno to Sabine",
       "source": "./plugins/love-letter",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -56,7 +56,7 @@
       "description": "LinkedIn-Assistent für Benno: Nachrichten, Mitteilungen und Networking auf Deutsch mit Browser-Automation",
       "source": "./plugins/linkedin-assistant",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -67,7 +67,7 @@
       "description": "Hooks-based tracer that logs prompts, tool calls, tool results, and assistant responses.",
       "source": "./plugins/trace-everything",
       "category": "development",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Benno"
       },
@@ -78,7 +78,7 @@
       "description": "Capture screenshots for Claude's visual context - windows, regions, or full screen with auto-compression",
       "source": "./plugins/screenshot",
       "category": "development",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -89,7 +89,7 @@
       "description": "Prepare a restart prompt when context runs low - captures all insights, references, and task state for seamless continuation",
       "source": "./plugins/prompt-for-restart",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -100,7 +100,7 @@
       "description": "Format prompts for the ralph-wiggum agentic loop with optional code analysis and DoD enhancement",
       "source": "./plugins/ralph-wiggum-helper",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
@@ -111,7 +111,7 @@
       "description": "Microsoft 365 integration via MCP-by-Code pattern - email, calendar, files, Teams, SharePoint with 70%+ token savings",
       "source": "./plugins/ms365-by-code",
       "category": "productivity",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Benno"
       },
